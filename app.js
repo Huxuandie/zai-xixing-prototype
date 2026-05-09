@@ -9,14 +9,26 @@ const state = {
 };
 
 const nodes = {
-  tailor: { name: '裁缝铺', desc: '手艺、布料与街坊人情交织的空间。' },
-  tofu: { name: '豆腐坊', desc: '清晨豆香与水汽构成日常劳动节奏。' },
+  tailor: {
+    name: '裁缝铺',
+    desc: '裁缝铺是西兴古镇日常生活中具有手工温度的空间。影像从布料、剪裁、缝纫动作和店铺环境出发，呈现传统手艺在古镇生活中的延续方式。用户进入该节点后，不只是观看一个职业场景，而是在手部动作、空间陈设与街坊关系之间，感受古镇日常经验如何被保存、改变并重新讲述。',
+  },
+  tofu: {
+    name: '豆腐坊',
+    desc: '豆腐坊呈现的是西兴古镇清晨生活中最具烟火气的一面。影像通过豆香、水汽、器具声和劳动动作，记录地方饮食与日常节奏之间的关系。用户在该节点中可以看到古镇生活并非只存在于历史叙述中，而是通过人的劳作、味觉记忆和重复性的日常实践继续发生。',
+  },
   pavilion: {
     name: '庄亭（西施妆亭）',
-    desc: '庄亭位于西兴古镇水边，相传西施曾在此整装待渡，北上入吴，因此这里也被称为“西施妆亭”。在本片中，庄亭既是现实中的停留空间，也是连接地方传说、历史记忆与今昔对照的重要节点。',
+    desc: '庄亭是西兴古镇连接现实空间与地方传说的重要节点。相传西施曾在此整装待渡，北上入吴，因此庄亭也被称为“西施妆亭”。在本作品中，庄亭既是可被拍摄和抵达的现实地点，也是历史想象、地方记忆与当代游览经验交汇的空间。用户通过该节点进入影像与资料弹窗，可以在“今日所见”与“昔日传说”之间建立联系。',
   },
-  alley: { name: '街巷', desc: '流动记忆的线性空间，连接个体与集体。' },
-  museum: { name: '过塘行码头专项陈列馆', desc: '汇集旧照与地方志的材料场。' },
+  alley: {
+    name: '街巷',
+    desc: '街巷是连接西兴各个地点的流动空间，也是用户在作品中理解古镇整体结构的重要线索。影像以行走视角呈现巷道、门面、水岸与居民生活之间的关系，使古镇不再只是若干孤立景点，而成为一张由路径、停留和记忆共同构成的生活网络。用户在该节点中可以感受到空间移动本身也是一种叙事方式。',
+  },
+  museum: {
+    name: '过塘行码头专项陈列馆',
+    desc: '过塘行码头专项陈列馆承担着历史资料整理与地方记忆展示的功能。与其他生活化节点相比，陈列馆更像是作品中的档案入口，集中呈现西兴渡口、过塘行、码头交通与地方商业往来的历史信息。用户进入该节点后，可以通过影像、老照片、地图和展签资料，理解西兴古镇从交通节点到记忆空间的历史转变。',
+  },
 };
 
 const videoSources = {
@@ -183,7 +195,7 @@ function renderNode(nodeKey) {
 
   if (nodeKey === 'tailor') {
     nodeMainContent = `
-      ${renderVideoBlock('tailor', '裁缝铺影像')}
+      ${renderVideoBlock('tailor', '裁缝铺影像：传统手艺与街坊日常')}
       <div class="detail-hotspots">
         <button class="btn" data-modal="detailA">细节热点A</button>
         <button class="btn" data-modal="detailB">细节热点B</button>
@@ -192,7 +204,7 @@ function renderNode(nodeKey) {
     `;
   } else if (nodeKey === 'tofu') {
     nodeMainContent = `
-      ${renderVideoBlock('tofu', '豆腐坊影像')}
+      ${renderVideoBlock('tofu', '豆腐坊影像：清晨劳动与地方味觉记忆')}
       <div class="detail-hotspots">
         <button class="btn" data-modal="detailA">细节热点A</button>
         <button class="btn" data-modal="detailB">细节热点B</button>
@@ -201,7 +213,7 @@ function renderNode(nodeKey) {
     `;
   } else if (nodeKey === 'alley') {
     nodeMainContent = `
-      ${renderVideoBlock('alley', '街巷影像')}
+      ${renderVideoBlock('alley', '街巷影像：行走中的古镇空间')}
       <div class="detail-hotspots">
         <button class="btn" data-modal="detailA">细节热点A</button>
         <button class="btn" data-modal="detailB">细节热点B</button>
@@ -210,7 +222,7 @@ function renderNode(nodeKey) {
     `;
   } else if (nodeKey === 'pavilion') {
     nodeMainContent = `
-      ${renderVideoBlock('pavilion', '庄亭影像')}
+      ${renderVideoBlock('pavilion', '庄亭影像：现实地点与地方传说')}
       <div class="detail-hotspots">
         <button class="btn" data-modal="detailA">细节热点A</button>
         <button class="btn" data-modal="detailB">细节热点B</button>
@@ -221,7 +233,7 @@ function renderNode(nodeKey) {
     nodeMainContent = `
       <div class="collection-layout">
         <div>
-          ${renderVideoBlock('museum', '过塘行码头专项陈列馆影像')}
+          ${renderVideoBlock('museum', '陈列馆影像：档案、展陈与地方历史')}
         </div>
         <div class="card side-panel">
           <h4>资料列表</h4>
