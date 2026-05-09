@@ -42,6 +42,16 @@ const videoSources = {
 const mapImages = {
   today: './assets/images/maps/map_today_xixing.png',
 };
+const albumPhotos = [
+  { title: '老街门面', desc: '记录街边店铺与居民日常往来的生活痕迹。' },
+  { title: '水岸记忆', desc: '呈现水边空间与古镇生活之间的联系。' },
+  { title: '街巷转角', desc: '从行走视角观看西兴街巷的空间层次。' },
+  { title: '庄亭旧影', desc: '围绕庄亭及西施妆亭传说展开地方记忆。' },
+  { title: '手艺现场', desc: '呈现传统手艺在当代生活中的延续。' },
+  { title: '清晨豆香', desc: '记录豆腐坊劳动节奏与地方味觉记忆。' },
+  { title: '陈列馆一角', desc: '展示历史资料、展签与地方档案的观看现场。' },
+  { title: '归途与桥', desc: '以道路、桥与水岸收束古镇的空间经验。' },
+];
 
 function renderVideoBlock(nodeKey, label = '节点视频') {
   const src = videoSources[nodeKey];
@@ -268,8 +278,11 @@ function renderNode(nodeKey) {
 }
 
 function renderAlbum() {
-  const items = Array.from({ length: 8 }, (_, i) => i + 1)
-    .map((n) => `<button class="photo-item" data-modal="photo${n}">照片 ${n}<br />点击查看详情</button>`)
+  const items = albumPhotos
+    .map(
+      (item, index) =>
+        `<button class="photo-item" data-modal="photo${index + 1}">${item.title}<br />点击查看详情</button>`
+    )
     .join('');
 
   return `
@@ -335,16 +348,17 @@ function openModal(type, context = {}) {
         <button class="btn" data-go="album">查看相关内容</button>
       </div>
     `,
+
     xishiLegend: `
       <h3>庄亭 / 西施妆亭</h3>
       <div class="compare">
         <div>
-          <div class="img-ph">现实图占位</div>
-          <p>现实层：庄亭临水而立，是当下影像的停留点。</p>
+          <div class="img-ph">今日庄亭影像</div>
+          <p>现实层：庄亭临水而立，是当下影像的停留点，也连接着用户对西兴水岸空间的直接观看。</p>
         </div>
         <div>
-          <div class="img-ph">历史图占位</div>
-          <p>历史层：相传西施在此整装待渡，北上入吴。</p>
+          <div class="img-ph">西施妆亭传说</div>
+          <p>历史层：相传西施在此整装待渡，北上入吴，这一传说为现实地点叠加了地方记忆与历史想象。</p>
         </div>
       </div>
       <p>西施整装待渡的传说，让庄亭不只是现实空间节点，也成为连接地方记忆与历史想象的重要地点。</p>
@@ -354,31 +368,72 @@ function openModal(type, context = {}) {
         <button class="btn" data-go-node="pavilion">返回庄亭</button>
       </div>
     `,
+
     nowThen: `
       <h3>今昔对照</h3>
       <div class="compare">
-        <div class="img-ph">今日影像占位</div>
-        <div class="img-ph">昔日档案占位</div>
+        <div class="img-ph">今日空间影像</div>
+        <div class="img-ph">昔日资料线索</div>
       </div>
-      <p>通过空间轮廓、渡口位置与街巷走向，对比古镇肌理变化。</p>
+      <p>通过空间轮廓、渡口位置与街巷走向，对比古镇肌理变化，使用户在当下影像与历史资料之间建立观看联系。</p>
     `,
-    oldMap: `<h3>老地图资料</h3><div class="img-ph">老地图占位</div><p>可替换为历史地图扫描件。</p>`,
-    oldPhotos: `<h3>历史照片</h3><div class="img-ph">历史照片占位</div><p>可放置同地点不同年代照片。</p>`,
-    gazetteer: `<h3>地方志资料</h3><p>摘录占位：与西兴渡口、街巷、手工业相关条目。</p>`,
-    labels: `<h3>展签资料</h3><p>陈列馆展签文本占位。</p>`,
-    catalog: `<h3>图录资料</h3><p>图录页面占位，可替换为PDF截图。</p>`,
-    detailA: `<h3>细节热点 A</h3><p>镜头细节说明占位。</p>`,
-    detailB: `<h3>细节热点 B</h3><p>口述片段说明占位。</p>`,
-    submitInfo: `<h3>提交说明</h3><p>原型中不真正上传，后续可接入后端接口。</p>`,
+
+    oldMap: `
+      <h3>老地图资料</h3>
+      <div class="img-ph">西兴古镇历史空间示意</div>
+      <p>这里用于呈现西兴渡口、街巷、水岸与主要节点之间的历史空间关系，帮助用户从“昔日西兴”的角度重新理解今日地图。</p>
+    `,
+
+    oldPhotos: `
+      <h3>历史照片</h3>
+      <div class="img-ph">旧影像资料展示</div>
+      <p>历史照片用于补充同一地点在不同时期的视觉线索，使用户在观看今日影像时意识到空间记忆的延续与变化。</p>
+    `,
+
+    gazetteer: `
+      <h3>地方志资料</h3>
+      <p>地方志资料用于补充西兴渡口、街巷、手工业与地方商业往来的背景信息，为节点影像提供更完整的历史语境。</p>
+    `,
+
+    labels: `
+      <h3>展签资料</h3>
+      <p>展签文字集中呈现陈列馆对西兴过塘行、码头交通和地方商贸历史的解释，是用户理解档案内容的重要入口。</p>
+    `,
+
+    catalog: `
+      <h3>图录资料</h3>
+      <p>图录资料以图片和文字的方式整理陈列馆中的历史材料，辅助用户把单个展品放回西兴古镇的整体历史脉络中理解。</p>
+    `,
+
+    detailA: `
+      <h3>细节热点 A</h3>
+      <p>该热点用于提示影像中的动作、器物或环境细节，引导用户从微观层面观察古镇生活的质感。</p>
+    `,
+
+    detailB: `
+      <h3>细节热点 B</h3>
+      <p>该热点用于补充声音、口述或空间信息，使节点影像不只停留在观看层面，也能延伸出记忆与叙事解释。</p>
+    `,
+
+    submitInfo: `
+      <h3>提交说明</h3>
+      <p>本页面为毕业设计原型展示，暂不真正上传文件。相册模块用于模拟公众参与和地方记忆征集的交互流程。</p>
+    `,
   };
 
   if (type.startsWith('photo')) {
+    const photoIndex = Number(type.replace('photo', '')) - 1;
+    const photo = albumPhotos[photoIndex] || {
+      title: '西兴记忆',
+      desc: '这里记录一段与西兴有关的个人记忆。',
+    };
+
     modalContent.innerHTML = `
-      <h3>照片详情：${type.replace('photo', '照片 ')}</h3>
-      <div class="img-ph">照片大图占位</div>
-      <p>拍摄时间：20XX-XX-XX</p>
+      <h3>照片详情：${photo.title}</h3>
+      <div class="img-ph">${photo.title}</div>
+      <p>拍摄时间：待补充</p>
       <p>地点：杭州西兴古镇</p>
-      <p>描述：这里可替换为用户上传的一句话记忆。</p>
+      <p>描述：${photo.desc}</p>
     `;
   } else {
     modalContent.innerHTML = modalMap[type] || '<p>暂无内容</p>';
@@ -387,7 +442,6 @@ function openModal(type, context = {}) {
   modal.classList.remove('hidden');
   modal.setAttribute('aria-hidden', 'false');
 }
-
 function closeModal() {
   modal.classList.add('hidden');
   modal.setAttribute('aria-hidden', 'true');
