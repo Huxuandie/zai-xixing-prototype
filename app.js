@@ -207,36 +207,24 @@ function renderNode(nodeKey) {
     nodeMainContent = `
       ${renderVideoBlock('tailor', '裁缝铺影像：传统手艺与街坊日常')}
       <div class="detail-hotspots">
-        <button class="btn" data-modal="detailA">细节热点A</button>
-        <button class="btn" data-modal="detailB">细节热点B</button>
-      </div>
       <p>${node.desc}</p>
     `;
   } else if (nodeKey === 'tofu') {
     nodeMainContent = `
       ${renderVideoBlock('tofu', '豆腐坊影像：清晨劳动与地方味觉记忆')}
       <div class="detail-hotspots">
-        <button class="btn" data-modal="detailA">细节热点A</button>
-        <button class="btn" data-modal="detailB">细节热点B</button>
-      </div>
       <p>${node.desc}</p>
     `;
   } else if (nodeKey === 'alley') {
     nodeMainContent = `
       ${renderVideoBlock('alley', '街巷影像：行走中的古镇空间')}
       <div class="detail-hotspots">
-        <button class="btn" data-modal="detailA">细节热点A</button>
-        <button class="btn" data-modal="detailB">细节热点B</button>
-      </div>
       <p>${node.desc}</p>
     `;
   } else if (nodeKey === 'pavilion') {
     nodeMainContent = `
       ${renderVideoBlock('pavilion', '庄亭影像：现实地点与地方传说')}
       <div class="detail-hotspots">
-        <button class="btn" data-modal="detailA">细节热点A</button>
-        <button class="btn" data-modal="detailB">细节热点B</button>
-      </div>
       <p>${node.desc}</p>
     `;
   } else if (nodeKey === 'museum') {
@@ -255,10 +243,6 @@ function renderNode(nodeKey) {
             <li><button class="btn" data-modal="xishiLegend">庄亭相关资料</button></li>
           </ul>
         </div>
-      </div>
-      <div class="detail-hotspots">
-        <button class="btn" data-modal="detailA">细节热点A</button>
-        <button class="btn" data-modal="detailB">细节热点B</button>
       </div>
       <p>${node.desc}</p>
     `;
@@ -403,16 +387,6 @@ function openModal(type, context = {}) {
     catalog: `
       <h3>图录资料</h3>
       <p>图录资料以图片和文字的方式整理陈列馆中的历史材料，辅助用户把单个展品放回西兴古镇的整体历史脉络中理解。</p>
-    `,
-
-    detailA: `
-      <h3>细节热点 A</h3>
-      <p>该热点用于提示影像中的动作、器物或环境细节，引导用户从微观层面观察古镇生活的质感。</p>
-    `,
-
-    detailB: `
-      <h3>细节热点 B</h3>
-      <p>该热点用于补充声音、口述或空间信息，使节点影像不只停留在观看层面，也能延伸出记忆与叙事解释。</p>
     `,
 
     submitInfo: `
