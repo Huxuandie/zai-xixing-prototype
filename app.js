@@ -327,8 +327,8 @@ function renderAlbum() {
       <p>这里预置部分实地拍摄照片，作为公众记忆征集模块的基础展示与视觉参考。点击任意图片查看详情。</p>
       <div class="photo-grid">${items}</div>
       <div style="margin-top:16px;">
-        <button class="btn" data-go="form">分享你相册里的西兴</button>
-        <button class="btn" data-go="ending">进入收束页</button>
+        <button class="btn" data-go="form">分享我的西兴记忆</button>
+        <button class="btn" data-go="ending">查看结语</button>
       </div>
     </section>
   `;
@@ -361,8 +361,8 @@ function renderEnding() {
   return `
     <section class="page ending">
       <div class="card">
-        <h2>收束</h2>
-        <p>潮声缓慢，旧桥与新路共同延伸。你已走过一段在西兴的地图叙事。</p>
+        <h2>结语</h2>
+        <p>潮声缓慢，旧桥与新路共同延伸。你已完成一段关于西兴的地图式观看，也在影像、资料与个人记忆之间重新认识这座仍在生活中的古镇。</p>
         <button class="btn" data-go="map">返回地图</button>
         <button class="btn" data-go="cover">重新进入</button>
       </div>
