@@ -206,25 +206,21 @@ function renderNode(nodeKey) {
   if (nodeKey === 'tailor') {
     nodeMainContent = `
       ${renderVideoBlock('tailor', '裁缝铺影像：传统手艺与街坊日常')}
-      <div class="detail-hotspots">
       <p>${node.desc}</p>
     `;
   } else if (nodeKey === 'tofu') {
     nodeMainContent = `
       ${renderVideoBlock('tofu', '豆腐坊影像：清晨劳动与地方味觉记忆')}
-      <div class="detail-hotspots">
       <p>${node.desc}</p>
     `;
   } else if (nodeKey === 'alley') {
     nodeMainContent = `
       ${renderVideoBlock('alley', '街巷影像：行走中的古镇空间')}
-      <div class="detail-hotspots">
       <p>${node.desc}</p>
     `;
   } else if (nodeKey === 'pavilion') {
     nodeMainContent = `
       ${renderVideoBlock('pavilion', '庄亭影像：现实地点与地方传说')}
-      <div class="detail-hotspots">
       <p>${node.desc}</p>
     `;
   } else if (nodeKey === 'museum') {
