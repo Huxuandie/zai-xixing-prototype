@@ -43,14 +43,62 @@ const mapImages = {
   today: './assets/images/maps/map_today_xixing.png',
 };
 const albumPhotos = [
-  { title: '老街门面', desc: '记录街边店铺与居民日常往来的生活痕迹。' },
-  { title: '水岸记忆', desc: '呈现水边空间与古镇生活之间的联系。' },
-  { title: '街巷转角', desc: '从行走视角观看西兴街巷的空间层次。' },
-  { title: '庄亭旧影', desc: '围绕庄亭及西施妆亭传说展开地方记忆。' },
-  { title: '手艺现场', desc: '呈现传统手艺在当代生活中的延续。' },
-  { title: '清晨豆香', desc: '记录豆腐坊劳动节奏与地方味觉记忆。' },
-  { title: '陈列馆一角', desc: '展示历史资料、展签与地方档案的观看现场。' },
-  { title: '归途与桥', desc: '以道路、桥与水岸收束古镇的空间经验。' },
+  {
+    title: '老街门面',
+    image: './assets/images/album/album_old_street.jpg',
+    time: '拍摄时间：原型展示照片',
+    location: '杭州西兴古镇老街',
+    desc: '记录街边店铺与居民日常往来的生活痕迹。',
+  },
+  {
+    title: '水岸记忆',
+    image: './assets/images/album/album_waterfront.jpg',
+    time: '拍摄时间：原型展示照片',
+    location: '杭州西兴古镇水岸',
+    desc: '呈现水边空间与古镇生活之间的联系。',
+  },
+  {
+    title: '街巷转角',
+    image: './assets/images/album/album_alley.jpg',
+    time: '拍摄时间：原型展示照片',
+    location: '杭州西兴古镇街巷',
+    desc: '从行走视角观看西兴街巷的空间层次。',
+  },
+  {
+    title: '庄亭旧影',
+    image: './assets/images/album/album_pavilion.jpg',
+    time: '拍摄时间：原型展示照片',
+    location: '庄亭（西施妆亭）附近',
+    desc: '围绕庄亭及西施妆亭传说展开地方记忆。',
+  },
+  {
+    title: '手艺现场',
+    image: './assets/images/album/album_craft.jpg',
+    time: '拍摄时间：原型展示照片',
+    location: '西兴古镇裁缝铺',
+    desc: '呈现传统手艺在当代生活中的延续。',
+  },
+  {
+    title: '清晨豆香',
+    image: './assets/images/album/album_tofu.jpg',
+    time: '拍摄时间：原型展示照片',
+    location: '西兴古镇豆腐坊',
+    desc: '记录豆腐坊劳动节奏与地方味觉记忆。',
+  },
+  {
+    title: '陈列馆一角',
+    image: './assets/images/album/album_museum.jpg',
+    time: '拍摄时间：原型展示照片',
+    location: '过塘行码头专项陈列馆',
+    desc: '展示历史资料、展签与地方档案的观看现场。',
+  },
+  {
+    title: '归途与桥',
+    image: './assets/images/album/album_bridge.jpg',
+    time: '拍摄时间：原型展示照片',
+    location: '杭州西兴古镇',
+    desc: '以道路、桥与水岸收束古镇的空间经验。',
+  },
 ];
 
 function renderVideoBlock(nodeKey, label = '节点视频') {
@@ -263,8 +311,12 @@ function renderNode(nodeKey) {
 function renderAlbum() {
   const items = albumPhotos
     .map(
-      (item, index) =>
-        `<button class="photo-item" data-modal="photo${index + 1}">${item.title}<br />点击查看详情</button>`
+      (item, index) => `
+        <button class="photo-item" data-modal="photo${index + 1}">
+          <img src="${item.image}" alt="${item.title}" class="photo-thumb" />
+          <span>${item.title}</span>
+        </button>
+      `
     )
     .join('');
 
@@ -272,7 +324,7 @@ function renderAlbum() {
     <section class="page">
       <button class="btn" data-go="map">← 返回地图</button>
       <h2>相册里的西兴</h2>
-      <p>以照片墙汇集个人记忆，点击任意图片查看详情。</p>
+      <p>这里预置部分实地拍摄照片，作为公众记忆征集模块的基础展示与视觉参考。点击任意图片查看详情。</p>
       <div class="photo-grid">${items}</div>
       <div style="margin-top:16px;">
         <button class="btn" data-go="form">分享你相册里的西兴</button>
@@ -399,22 +451,25 @@ function openModal(type, context = {}) {
   };
 
   if (type.startsWith('photo')) {
-    const photoIndex = Number(type.replace('photo', '')) - 1;
-    const photo = albumPhotos[photoIndex] || {
-      title: '西兴记忆',
-      desc: '这里记录一段与西兴有关的个人记忆。',
-    };
+  const photoIndex = Number(type.replace('photo', '')) - 1;
+  const photo = albumPhotos[photoIndex] || {
+    title: '西兴记忆',
+    image: '',
+    time: '拍摄时间：由提交者填写',
+    location: '杭州西兴古镇',
+    desc: '这里记录一段与西兴有关的个人记忆。',
+  };
 
-    modalContent.innerHTML = `
-      <h3>照片详情：${photo.title}</h3>
-      <div class="img-ph">${photo.title}</div>
-      <p>拍摄时间：待补充</p>
-      <p>地点：杭州西兴古镇</p>
-      <p>描述：${photo.desc}</p>
-    `;
-  } else {
-    modalContent.innerHTML = modalMap[type] || '<p>暂无内容</p>';
-  }
+  modalContent.innerHTML = `
+    <h3>照片详情：${photo.title}</h3>
+    <img src="${photo.image}" alt="${photo.title}" class="modal-photo" />
+    <p>${photo.time}</p>
+    <p>地点：${photo.location}</p>
+    <p>描述：${photo.desc}</p>
+  `;
+} else {
+  modalContent.innerHTML = modalMap[type] || '<p>暂无内容</p>';
+}
 
   modal.classList.remove('hidden');
   modal.setAttribute('aria-hidden', 'false');
