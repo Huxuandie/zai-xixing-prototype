@@ -112,7 +112,10 @@ function renderCover() {
       <div class="card cover-inner">
         <h1>《在西兴》</h1>
         <p>一座被展示、也仍在生活的古镇</p>
-        <button class="btn" data-go="map">进入地图</button>
+        <div class="cover-actions">
+          <button class="btn" data-go="map">进入地图</button>
+          <button class="btn" data-modal="aboutWork">关于作品</button>
+        </div>
       </div>
     </section>
   `;
@@ -317,16 +320,20 @@ function renderEnding() {
 
 function openModal(type, context = {}) {
   const modalMap = {
-    about: `
-      <h3>关于此点：${nodes[context.node]?.name || ''}</h3>
-      <p><strong>地点背景：</strong>${nodes[context.node]?.desc || ''}</p>
-      <p><strong>作品作用：</strong>作为“人-地-记忆”关系的叙事节点，连接地图与影像段落。</p>
-      <p><strong>推荐观看路径：</strong>地图 → 节点 → 陈列馆资料 → 相册。</p>
+    aboutWork: `
+      <h3>关于《在西兴》</h3>
+      <p>《在西兴》是一部以杭州西兴古镇为对象的地图式交互纪录片网页原型。作品以“今日西兴”和“昔日西兴”两个空间层为基础，将裁缝铺、豆腐坊、庄亭、街巷、过塘行码头专项陈列馆等地点组织为可点击的叙事节点。</p>
+      <p>用户通过自主选择路径进入不同影像片段、历史资料与个人相册内容，在非线性浏览中建立对西兴古镇的空间记忆与地方认知。</p>
+      <p><strong>交互方式：</strong>点击地图热点进入节点页面，观看影像，并通过历史资料、今昔对照和相册模块补充对地点的理解。</p>
+      <p><strong>创作说明：</strong>本作品为毕业设计网页原型，重点展示地图式叙事结构、节点影像组织方式与公众记忆参与机制。</p>
       <div>
         <button class="btn" data-close-modal>关闭</button>
-        <button class="btn" data-go="map">返回地图</button>
-        <button class="btn" data-go="album">查看相关内容</button>
       </div>
+    `,
+
+    about: `
+      <h3>关于此点：${nodes[context.node]?.name || ''}</h3>
+      ...
     `,
 
     xishiLegend: `

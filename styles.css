@@ -50,6 +50,13 @@ textarea {
   padding: 52px;
   text-align: center;
 }
+.cover-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
 
 h1,
 h2,
