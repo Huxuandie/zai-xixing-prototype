@@ -180,6 +180,10 @@ function renderCover() {
 }
 
 function renderMapHotspots(isToday) {
+  if (!isToday) {
+    return '';
+  }
+
   return `
     <div class="map-hotspots">
       <button class="hotspot" style="left:20%;top:26%" data-go-node="museum">陈列馆</button>
@@ -188,11 +192,6 @@ function renderMapHotspots(isToday) {
       <button class="hotspot" style="left:73%;top:28%" data-go-node="tailor">裁缝铺</button>
       <button class="hotspot" style="left:73%;top:69%" data-go-node="alley">街巷</button>
       <button class="hotspot" style="left:50%;top:84%" data-go="album">相册里的西兴</button>
-      ${
-        isToday
-          ? ''
-          : '<button class="hotspot" style="left:28%;top:78%" data-modal="xishiLegend">庄亭 / 西施妆亭传说资料</button>'
-      }
     </div>
   `;
 }
@@ -226,7 +225,7 @@ function renderMap() {
           <p>${
             isToday
               ? '点击地图热点进入节点页面，观看节点影像并查看相关资料。'
-              : '昔日层包含老地图、历史照片、地方志资料与庄亭传说入口。'
+              : '昔日层以历史地图和资料弹窗为主，用于补充西兴古镇的空间记忆与地方传说，不直接对应现代影像节点。'
           }</p>
           ${
             isToday
