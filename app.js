@@ -27,7 +27,7 @@ const nodes = {
   },
   museum: {
     name: '过塘行码头专项陈列馆',
-    desc: '过塘行码头专项陈列馆承担着历史资料整理与地方记忆展示的功能。与其他生活化节点相比，陈列馆更像是作品中的档案入口，集中呈现西兴渡口、过塘行、码头交通与地方商业往来的历史信息。用户进入该节点后，可以通过影像、老照片、地图和展签资料，理解西兴古镇从交通节点到记忆空间的历史转变。',
+    desc: '过塘行码头专项陈列馆承担着历史资料整理与地方记忆展示的功能。与其他生活化节点相比，陈列馆更像是作品中的档案入口，集中呈现西兴渡口、过塘行、码头交通与地方商业往来的历史信息。用户进入该节点后，可以通过影像、历史图像和历史地图资料，理解西兴古镇从交通节点到记忆空间的历史转变。',
   },
 };
 
@@ -395,10 +395,10 @@ function renderMap() {
               : `<div class="old-materials">
                   <h4>昔日西兴资料</h4>
                   <ul>
-                    <li><button class="btn" data-modal="oldMap">老地图</button></li>
+                    <li><button class="btn" data-modal="oldMap">历史地图</button></li>
                     <li><button class="btn" data-modal="oldPhotos">历史图像</button></li>
                     <li><button class="btn" data-modal="gazetteer">地方志资料</button></li>
-                    <li><button class="btn" data-modal="xishiLegend">庄亭（西施妆亭）传说入口</button></li>
+                    <li><button class="btn" data-modal="xishiLegend">西施妆亭传说</button></li>
                   </ul>
                 </div>`
           }
@@ -543,7 +543,7 @@ function openModal(type, context = {}) {
       <h3>关于《在西兴》</h3>
       <p>《在西兴》是一部以杭州西兴古镇为对象的地图式交互纪录片网页原型。作品以“今日西兴”和“昔日西兴”两个空间层为基础，将裁缝铺、豆腐坊、庄亭、街巷、过塘行码头专项陈列馆等地点组织为可点击的叙事节点。</p>
       <p>用户通过自主选择路径进入不同影像片段、历史资料与个人相册内容，在非线性浏览中建立对西兴古镇的空间记忆与地方认知。</p>
-      <p><strong>交互方式：</strong>点击地图热点进入节点页面，观看影像，并通过历史资料、今昔对照和相册模块补充对地点的理解。</p>
+      <p><strong>交互方式：</strong>点击地图热点进入节点页面，观看影像，并通过历史资料、地方传说和相册模块补充对地点的理解。</p>
       <p><strong>创作说明：</strong>本作品为毕业设计网页原型，重点展示地图式叙事结构、节点影像组织方式与公众记忆参与机制。</p>
       <div>
         <button class="btn" data-close-modal>关闭</button>
