@@ -141,7 +141,28 @@ p {
   inset: 20px;
   z-index: 2;
 }
+.history-map-note {
+  position: absolute;
+  left: 32px;
+  bottom: 32px;
+  z-index: 3;
+  max-width: 360px;
+  padding: 12px 16px;
+  border: 1px dashed var(--accent);
+  border-radius: 8px;
+  background: rgba(244, 237, 220, 0.86);
+  color: var(--ink);
+  line-height: 1.6;
+}
 
+.history-map-note strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.history-map-note span {
+  font-size: 14px;
+}
 .hotspot {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -372,4 +393,39 @@ textarea {
   .node-video {
     max-height: 320px;
   }
+}
+
+.history-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+  margin: 16px 0;
+}
+
+.history-figure {
+  margin: 0;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(244, 237, 220, 0.72);
+}
+
+.history-figure.wide {
+  grid-column: 1 / -1;
+}
+
+.history-figure img {
+  width: 100%;
+  max-height: 520px;
+  object-fit: contain;
+  display: block;
+  border-radius: 6px;
+  background: #e6dcc8;
+}
+
+.history-figure figcaption {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #5f4f3d;
 }

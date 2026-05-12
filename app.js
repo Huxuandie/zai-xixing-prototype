@@ -234,7 +234,7 @@ function renderMap() {
                   <h4>昔日西兴资料</h4>
                   <ul>
                     <li><button class="btn" data-modal="oldMap">老地图</button></li>
-                    <li><button class="btn" data-modal="oldPhotos">历史照片</button></li>
+                    <li><button class="btn" data-modal="oldPhotos">历史图像</button></li>
                     <li><button class="btn" data-modal="gazetteer">地方志资料</button></li>
                     <li><button class="btn" data-modal="xishiLegend">庄亭（西施妆亭）传说入口</button></li>
                   </ul>
@@ -397,21 +397,25 @@ function openModal(type, context = {}) {
     `,
 
     xishiLegend: `
-      <h3>庄亭 / 西施妆亭</h3>
-      <div class="compare">
-        <div>
-          <div class="img-ph">今日庄亭影像</div>
-          <p>现实层：庄亭临水而立，是当下影像的停留点，也连接着用户对西兴水岸空间的直接观看。</p>
-        </div>
-        <div>
-          <div class="img-ph">西施妆亭传说</div>
-          <p>历史层：相传西施在此整装待渡，北上入吴，这一传说为现实地点叠加了地方记忆与历史想象。</p>
-        </div>
+      <h3>庄亭 / 西施妆亭传说</h3>
+      <p>庄亭在本作品中承担连接现实地点、地方传说与历史想象的作用。相传西施曾在此整装待渡，北上入吴，因此这一地点也被称为“西施妆亭”。</p>
+
+      <div class="history-gallery">
+        <figure class="history-figure">
+          <img src="./assets/images/history/history_xishi_painting.jpg" alt="西施图" />
+          <figcaption>西施图：作为西施传说与地方历史想象的视觉资料</figcaption>
+        </figure>
+        <figure class="history-figure">
+          <img src="./assets/images/history/history_xishi_site_genealogy.jpg" alt="西施古迹与居民家谱资料" />
+          <figcaption>西施古迹与相关地方记忆资料，用于补充西施传说的流传背景</figcaption>
+        </figure>
       </div>
-      <p>西施整装待渡的传说，让庄亭不只是现实空间节点，也成为连接地方记忆与历史想象的重要地点。</p>
+
+      <p>这些资料并不直接等同于今日庄亭的实地影像，而是作为传说、地方记忆与历史想象的补充材料，帮助用户理解庄亭为何能够成为“昔日西兴”中的重要叙事节点。</p>
+
       <div>
-      <button class="btn" data-go-node="pavilion">查看今日庄亭</button>
-    </div>
+        <button class="btn" data-go-node="pavilion">查看今日庄亭</button>
+      </div>
     `,
 
 
@@ -422,15 +426,33 @@ function openModal(type, context = {}) {
     `,
 
     oldPhotos: `
-      <h3>历史照片</h3>
-      <img src="./assets/images/history/history_old_street_photos.jpg" alt="西兴历史照片资料" class="modal-photo" />
-      <p>本组历史照片呈现铁岭关、江公祠以及西兴历史街区等旧影像资料，用于补充西兴古镇在历史街区、商业空间与地方记忆中的视觉线索。</p>
+      <h3>历史图像</h3>
+      <div class="history-gallery">
+        <figure class="history-figure">
+          <img src="./assets/images/history/history_old_street_photos.jpg" alt="西兴历史照片资料" />
+          <figcaption>铁岭关、江公祠与西兴历史街区旧影像资料</figcaption>
+        </figure>
+        <figure class="history-figure">
+          <img src="./assets/images/history/history_tielingguan_painting.jpg" alt="铁岭关夕阳图" />
+          <figcaption>铁岭关夕阳图：以绘画形式呈现地方历史记忆与空间想象</figcaption>
+        </figure>
+      </div>
+      <p>本组资料以旧影像和绘画图像共同呈现西兴及其周边历史空间的视觉记忆，补充用户对“昔日西兴”的感性认识。</p>
     `,
 
     gazetteer: `
       <h3>地方志资料</h3>
-      <img src="./assets/images/history/history_hailou_tangzha.jpg" alt="明万历《萧山县志》西兴镇海楼塘闸图" class="modal-photo" />
-      <p>此图为明万历《萧山县志》中关于西兴镇海楼塘闸的图像资料，呈现西兴作为水陆交通节点、滨水空间与地方设施之间的历史关系。该资料用于辅助理解“昔日西兴”的空间结构与历史记忆。</p>
+      <div class="history-gallery">
+        <figure class="history-figure">
+          <img src="./assets/images/history/history_hailou_tangzha.jpg" alt="明万历《萧山县志》西兴镇海楼塘闸图" />
+          <figcaption>明万历《萧山县志》西兴镇海楼塘闸图</figcaption>
+        </figure>
+        <figure class="history-figure wide">
+          <img src="./assets/images/history/history_waterworks_sunzi.jpg" alt="《孙子治江源》疏浚图" />
+          <figcaption>《孙子治江源》疏浚图：用于补充水系治理、滨水空间与地方交通背景</figcaption>
+        </figure>
+      </div>
+      <p>地方志与治水图像资料用于补充西兴作为水陆交通节点、滨水空间和地方设施之间的历史关系，帮助用户从区域水系与历史空间的角度理解“昔日西兴”。</p>
     `,
 
     labels: `
