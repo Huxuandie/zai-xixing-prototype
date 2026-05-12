@@ -108,6 +108,123 @@ const albumPhotos = [
     desc: '以道路、桥与水岸收束古镇的空间经验。',
   },
 ];
+const materialSlideState = {
+  oldMap: 0,
+  oldPhotos: 0,
+  gazetteer: 0,
+  xishiLegend: 0,
+};
+
+const materialSlides = {
+  oldMap: {
+    title: '老地图资料',
+    intro: '本组资料用于呈现西兴及其所在区域的历史空间关系，帮助用户从地图层面理解“昔日西兴”。',
+    items: [
+      {
+        src: './assets/images/maps/map_history_xixing.jpg',
+        caption: '西兴古镇历史地图：呈现西兴古镇内部街巷、水岸与主要地点之间的关系。',
+      },
+      {
+        src: './assets/images/history/history_canal_map.jpg',
+        caption: '浙东运河地图：用于补充西兴与钱塘江、浙东运河及区域水陆交通之间的关系。',
+      },
+    ],
+    outro: '这些地图资料不作为现代节点导航，而是作为历史空间参照，帮助用户理解今日西兴背后的地理与交通脉络。',
+  },
+
+  oldPhotos: {
+    title: '历史图像',
+    intro: '本组资料以旧影像、绘画图像和遗迹照片共同呈现西兴及其周边历史空间的视觉记忆。',
+    items: [
+      {
+        src: './assets/images/history/history_old_street_photos.jpg',
+        caption: '铁岭关、江公祠与西兴历史街区旧影像资料。',
+      },
+      {
+        src: './assets/images/history/history_tielingguan_painting.jpg',
+        caption: '铁岭关夕阳图：以绘画形式呈现地方历史记忆与空间想象。',
+      },
+      {
+        src: './assets/images/history/history_canal_boat_painting.jpg',
+        caption: '浙东运河与官道路图像：补充水路交通与地方往来的历史想象。',
+      },
+      {
+        src: './assets/images/history/history_liugongci_relics.jpg',
+        caption: '刘公祠遗物与石柱资料：作为地方遗存与公共记忆的补充图像。',
+      },
+    ],
+    outro: '这些图像资料用于补充用户对“昔日西兴”的感性认识，使历史层不只是地图，也包含地方记忆、遗迹和图像想象。',
+  },
+
+  gazetteer: {
+    title: '地方志资料',
+    intro: '地方志和治水图像资料用于补充西兴作为水陆交通节点、滨水空间和地方设施之间的历史关系。',
+    items: [
+      {
+        src: './assets/images/history/history_hailou_tangzha.jpg',
+        caption: '明万历《萧山县志》西兴镇海楼塘闸图。',
+      },
+      {
+        src: './assets/images/history/history_waterworks_sunzi.jpg',
+        caption: '《孙子治江源》疏浚图：用于补充水系治理、滨水空间与地方交通背景。',
+      },
+      {
+        src: './assets/images/history/history_xixingtang_repair.jpg',
+        caption: '明万历年间萧山县令刘会主持重修西兴塘相关图像资料。',
+      },
+    ],
+    outro: '这些资料帮助用户从水系、堤塘、渡口和地方设施的角度理解“昔日西兴”的空间结构。',
+  },
+
+  xishiLegend: {
+    title: '庄亭 / 西施妆亭传说',
+    intro: '庄亭在本作品中承担连接现实地点、地方传说与历史想象的作用。相传西施曾在此整装待渡，北上入吴，因此这一地点也被称为“西施妆亭”。',
+    items: [
+      {
+        src: './assets/images/history/history_xishi_painting.jpg',
+        caption: '西施图：作为西施传说与地方历史想象的视觉资料。',
+      },
+      {
+        src: './assets/images/history/history_xishi_site_genealogy.jpg',
+        caption: '西施古迹与相关地方记忆资料，用于补充西施传说的流传背景。',
+      },
+    ],
+    outro: '这些资料并不直接等同于今日庄亭的实地影像，而是作为传说、地方记忆与历史想象的补充材料，帮助用户理解庄亭为何成为“昔日西兴”中的重要叙事节点。',
+    action: '<button class="btn" data-go-node="pavilion">查看今日庄亭</button>',
+  },
+};
+
+function renderMaterialSlides(type) {
+  const group = materialSlides[type];
+  if (!group) return '<p>暂无资料。</p>';
+
+  const index = materialSlideState[type] || 0;
+  const item = group.items[index];
+  const hasMultiple = group.items.length > 1;
+
+  return `
+    <h3>${group.title}</h3>
+    <p>${group.intro}</p>
+
+    <div class="material-viewer">
+      <div class="material-count">${index + 1} / ${group.items.length}</div>
+      <img src="${item.src}" alt="${item.caption}" class="material-viewer-image" />
+      <p class="material-caption">${item.caption}</p>
+
+      ${
+        hasMultiple
+          ? `<div class="material-controls">
+              <button class="btn" data-material-prev="${type}">上一张</button>
+              <button class="btn" data-material-next="${type}">下一张</button>
+            </div>`
+          : ''
+      }
+    </div>
+
+    <p>${group.outro}</p>
+    ${group.action ? `<div>${group.action}</div>` : ''}
+  `;
+}
 
 function renderVideoBlock(nodeKey, label = '节点视频') {
   const src = videoSources[nodeKey];
@@ -396,64 +513,13 @@ function openModal(type, context = {}) {
       ...
     `,
 
-    xishiLegend: `
-      <h3>庄亭 / 西施妆亭传说</h3>
-      <p>庄亭在本作品中承担连接现实地点、地方传说与历史想象的作用。相传西施曾在此整装待渡，北上入吴，因此这一地点也被称为“西施妆亭”。</p>
+    oldMap: renderMaterialSlides('oldMap'),
 
-      <div class="history-gallery">
-        <figure class="history-figure">
-          <img src="./assets/images/history/history_xishi_painting.jpg" alt="西施图" />
-          <figcaption>西施图：作为西施传说与地方历史想象的视觉资料</figcaption>
-        </figure>
-        <figure class="history-figure">
-          <img src="./assets/images/history/history_xishi_site_genealogy.jpg" alt="西施古迹与居民家谱资料" />
-          <figcaption>西施古迹与相关地方记忆资料，用于补充西施传说的流传背景</figcaption>
-        </figure>
-      </div>
+    oldPhotos: renderMaterialSlides('oldPhotos'),
 
-      <p>这些资料并不直接等同于今日庄亭的实地影像，而是作为传说、地方记忆与历史想象的补充材料，帮助用户理解庄亭为何能够成为“昔日西兴”中的重要叙事节点。</p>
+    gazetteer: renderMaterialSlides('gazetteer'),
 
-      <div>
-        <button class="btn" data-go-node="pavilion">查看今日庄亭</button>
-      </div>
-    `,
-
-
-    oldMap: `
-      <h3>老地图资料</h3>
-      <img src="./assets/images/maps/map_history_xixing.jpg" alt="西兴古镇历史地图" class="modal-photo" />
-      <p>这张地图作为“昔日西兴”的历史空间资料，用于呈现西兴古镇中渡口、水岸、街巷与主要地点之间的关系，帮助用户从历史层面理解今日西兴的空间结构。</p>
-    `,
-
-    oldPhotos: `
-      <h3>历史图像</h3>
-      <div class="history-gallery">
-        <figure class="history-figure">
-          <img src="./assets/images/history/history_old_street_photos.jpg" alt="西兴历史照片资料" />
-          <figcaption>铁岭关、江公祠与西兴历史街区旧影像资料</figcaption>
-        </figure>
-        <figure class="history-figure">
-          <img src="./assets/images/history/history_tielingguan_painting.jpg" alt="铁岭关夕阳图" />
-          <figcaption>铁岭关夕阳图：以绘画形式呈现地方历史记忆与空间想象</figcaption>
-        </figure>
-      </div>
-      <p>本组资料以旧影像和绘画图像共同呈现西兴及其周边历史空间的视觉记忆，补充用户对“昔日西兴”的感性认识。</p>
-    `,
-
-    gazetteer: `
-      <h3>地方志资料</h3>
-      <div class="history-gallery">
-        <figure class="history-figure">
-          <img src="./assets/images/history/history_hailou_tangzha.jpg" alt="明万历《萧山县志》西兴镇海楼塘闸图" />
-          <figcaption>明万历《萧山县志》西兴镇海楼塘闸图</figcaption>
-        </figure>
-        <figure class="history-figure wide">
-          <img src="./assets/images/history/history_waterworks_sunzi.jpg" alt="《孙子治江源》疏浚图" />
-          <figcaption>《孙子治江源》疏浚图：用于补充水系治理、滨水空间与地方交通背景</figcaption>
-        </figure>
-      </div>
-      <p>地方志与治水图像资料用于补充西兴作为水陆交通节点、滨水空间和地方设施之间的历史关系，帮助用户从区域水系与历史空间的角度理解“昔日西兴”。</p>
-    `,
+    xishiLegend: renderMaterialSlides('xishiLegend'),
 
     labels: `
       <h3>展签资料</h3>
@@ -549,15 +615,32 @@ modal.addEventListener('click', (event) => {
   const target = event.target.closest('button');
   if (!target) return;
 
-  const go = target.dataset.go;
-  const goNode = target.dataset.goNode;
-  const modalType = target.dataset.modal;
-  const aboutNode = target.dataset.about;
-
   if (target.dataset.closeModal !== undefined) {
     closeModal();
     return;
   }
+
+  const materialNext = target.dataset.materialNext;
+  const materialPrev = target.dataset.materialPrev;
+
+  if (materialNext || materialPrev) {
+    const type = materialNext || materialPrev;
+    const group = materialSlides[type];
+
+    if (!group) return;
+
+    const current = materialSlideState[type] || 0;
+    const direction = materialNext ? 1 : -1;
+    materialSlideState[type] = (current + direction + group.items.length) % group.items.length;
+
+    openModal(type);
+    return;
+  }
+
+  const go = target.dataset.go;
+  const goNode = target.dataset.goNode;
+  const modalType = target.dataset.modal;
+  const aboutNode = target.dataset.about;
 
   if (go) {
     state.page = go;
