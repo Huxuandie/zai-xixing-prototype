@@ -38,6 +38,13 @@ const videoSources = {
   museum: './assets/videos/museum_web.mp4',
   pavilion: './assets/videos/zhuangting_web.mp4',
 };
+const posterSources = {
+  tailor: './assets/images/posters/poster_tailor.jpg',
+  tofu: './assets/images/posters/poster_tofu.jpg',
+  alley: './assets/images/posters/poster_alley.jpg',
+  museum: './assets/images/posters/poster_museum.jpg',
+  pavilion: './assets/images/posters/poster_pavilion.jpg',
+};
 
 const mapImages = {
   today: './assets/images/maps/map_today_xixing.png',
@@ -103,9 +110,11 @@ const albumPhotos = [
 
 function renderVideoBlock(nodeKey, label = '节点视频') {
   const src = videoSources[nodeKey];
+  const poster = posterSources[nodeKey];
+
   return `
     <div class="video-block">
-      <video controls preload="metadata" playsinline class="node-video">
+      <video controls preload="metadata" playsinline class="node-video" poster="${poster}">
         <source src="${src}" type="video/mp4" />
         您的浏览器无法播放该视频，请检查文件路径或视频格式。
       </video>
