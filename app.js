@@ -251,15 +251,14 @@ function renderNode(nodeKey) {
   if (!node) return '';
 
   const topRight =
-    nodeKey === 'pavilion'
-      ? `
-      <div class="detail-hotspots">
-        <button class="btn" data-modal="xishiLegend">查看西施妆亭</button>
-        <button class="btn" data-modal="nowThen">查看今昔对照</button>
-        <button class="btn" data-about="${nodeKey}">关于此点</button>
-      </div>
-    `
-      : `<button class="btn" data-about="${nodeKey}">关于此点</button>`;
+  nodeKey === 'pavilion'
+    ? `
+    <div class="detail-hotspots">
+      <button class="btn" data-modal="xishiLegend">查看西施妆亭</button>
+      <button class="btn" data-about="${nodeKey}">关于此点</button>
+    </div>
+  `
+    : `<button class="btn" data-about="${nodeKey}">关于此点</button>`;
 
   let nodeMainContent = '';
 
@@ -411,20 +410,10 @@ function openModal(type, context = {}) {
       </div>
       <p>西施整装待渡的传说，让庄亭不只是现实空间节点，也成为连接地方记忆与历史想象的重要地点。</p>
       <div>
-        <button class="btn" data-close-modal>关闭</button>
-        <button class="btn" data-modal="nowThen">查看今昔对照</button>
-        <button class="btn" data-go-node="pavilion">返回庄亭</button>
-      </div>
+      <button class="btn" data-go-node="pavilion">查看今日庄亭</button>
+    </div>
     `,
 
-    nowThen: `
-      <h3>今昔对照</h3>
-      <div class="compare">
-        <div class="img-ph">今日空间影像</div>
-        <div class="img-ph">昔日资料线索</div>
-      </div>
-      <p>通过空间轮廓、渡口位置与街巷走向，对比古镇肌理变化，使用户在当下影像与历史资料之间建立观看联系。</p>
-    `,
 
     oldMap: `
       <h3>老地图资料</h3>
@@ -530,8 +519,46 @@ app.addEventListener('click', (event) => {
 });
 
 modal.addEventListener('click', (event) => {
-  if (event.target === modal || event.target.dataset.closeModal !== undefined) {
+  if (event.target === modal) {
     closeModal();
+    return;
+  }
+
+  const target = event.target.closest('button');
+  if (!target) return;
+
+  const go = target.dataset.go;
+  const goNode = target.dataset.goNode;
+  const modalType = target.dataset.modal;
+  const aboutNode = target.dataset.about;
+
+  if (target.dataset.closeModal !== undefined) {
+    closeModal();
+    return;
+  }
+
+  if (go) {
+    state.page = go;
+    render();
+    closeModal();
+    return;
+  }
+
+  if (goNode) {
+    state.page = 'node';
+    state.currentNode = goNode;
+    render();
+    closeModal();
+    return;
+  }
+
+  if (modalType) {
+    openModal(modalType);
+    return;
+  }
+
+  if (aboutNode) {
+    openModal('about', { node: aboutNode });
   }
 });
 
