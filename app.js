@@ -31,6 +31,34 @@ const nodes = {
   },
 };
 
+const nodeAboutDetails = {
+  tailor: {
+    role: '生活手艺节点',
+    focus: '裁缝铺用于呈现西兴古镇中仍然延续的手工劳动和街坊日常。影像重点落在布料、缝纫动作、店铺空间和人与手艺之间的关系。',
+    path: '建议观看路径：从裁缝铺影像进入，再回到地图继续浏览豆腐坊、街巷等生活节点。',
+  },
+  tofu: {
+    role: '日常饮食节点',
+    focus: '豆腐坊用于呈现古镇清晨生活、地方味觉和重复性劳动。该节点强调声音、水汽、器具和食物制作过程中的生活质感。',
+    path: '建议观看路径：观看豆腐坊影像后，可继续进入街巷节点，感受食物、道路与日常生活之间的联系。',
+  },
+  pavilion: {
+    role: '传说记忆节点',
+    focus: '庄亭连接现实地点与西施妆亭传说，是作品中“今日所见”和“昔日想象”交汇最明显的地点。',
+    path: '建议观看路径：先观看今日庄亭影像，再点击“查看西施妆亭”进入传说资料。',
+  },
+  alley: {
+    role: '空间连接节点',
+    focus: '街巷不是单一景点，而是连接裁缝铺、豆腐坊、庄亭和陈列馆的行走路径。该节点强调移动、转角和空间连续性本身也是一种叙事。',
+    path: '建议观看路径：从街巷进入后，可返回地图，自主选择其他地点继续浏览。',
+  },
+  museum: {
+    role: '历史档案节点',
+    focus: '过塘行码头专项陈列馆在作品中承担历史资料整理与地方记忆展示的功能。与裁缝铺、豆腐坊等生活化节点相比，陈列馆更像是一个档案入口，集中呈现西兴渡口、过塘行、码头交通与地方商业往来的历史信息。',
+    path: '建议观看路径：先观看陈列馆影像，再查看“历史图像”和“历史地图”，理解西兴古镇从交通节点到记忆空间的历史转变。',
+  },
+};
+
 const videoSources = {
   tailor: './assets/videos/tailor_web.mp4',
   tofu: './assets/videos/tofu_web.mp4',
@@ -226,6 +254,23 @@ function renderMaterialSlides(type) {
   `;
 }
 
+function renderAboutModal(nodeKey) {
+  const node = nodes[nodeKey];
+  const detail = nodeAboutDetails[nodeKey];
+
+  if (!node || !detail) {
+    return '<p>暂无节点说明。</p>';
+  }
+
+  return `
+    <h3>关于此点：${node.name}</h3>
+    <p><strong>节点定位：</strong>${detail.role}</p>
+    <p><strong>内容说明：</strong>${detail.focus}</p>
+    <p><strong>在作品中的作用：</strong>${node.desc}</p>
+    <p><strong>观看建议：</strong>${detail.path}</p>
+  `;
+}
+
 function renderVideoBlock(nodeKey, label = '节点视频') {
   const src = videoSources[nodeKey];
   const poster = posterSources[nodeKey];
@@ -408,11 +453,8 @@ function renderNode(nodeKey) {
         <div class="card side-panel">
           <h4>资料列表</h4>
           <ul class="material-list">
-            <li><button class="btn" data-modal="oldPhotos">老照片</button></li>
-            <li><button class="btn" data-modal="labels">展签</button></li>
-            <li><button class="btn" data-modal="oldMap">地图</button></li>
-            <li><button class="btn" data-modal="catalog">图录</button></li>
-            <li><button class="btn" data-modal="xishiLegend">庄亭相关资料</button></li>
+            <li><button class="btn" data-modal="oldPhotos">历史图像</button></li>
+            <li><button class="btn" data-modal="oldMap">历史地图</button></li>
           </ul>
         </div>
       </div>
@@ -508,10 +550,7 @@ function openModal(type, context = {}) {
       </div>
     `,
 
-    about: `
-      <h3>关于此点：${nodes[context.node]?.name || ''}</h3>
-      ...
-    `,
+    about: renderAboutModal(context.node),
 
     oldMap: renderMaterialSlides('oldMap'),
 
@@ -521,23 +560,13 @@ function openModal(type, context = {}) {
 
     xishiLegend: renderMaterialSlides('xishiLegend'),
 
-    labels: `
-      <h3>展签资料</h3>
-      <p>展签文字集中呈现陈列馆对西兴过塘行、码头交通和地方商贸历史的解释，是用户理解档案内容的重要入口。</p>
-    `,
-
-    catalog: `
-      <h3>图录资料</h3>
-      <p>图录资料以图片和文字的方式整理陈列馆中的历史材料，辅助用户把单个展品放回西兴古镇的整体历史脉络中理解。</p>
-    `,
-
     submitInfo: `
       <h3>提交说明</h3>
       <p>本页面为毕业设计原型展示，暂不真正上传文件。相册模块用于模拟公众参与和地方记忆征集的交互流程。</p>
     `,
   };
 
-  if (type.startsWith('photo')) {
+if (type.startsWith('photo')) {
   const photoIndex = Number(type.replace('photo', '')) - 1;
   const photo = albumPhotos[photoIndex] || {
     title: '西兴记忆',
