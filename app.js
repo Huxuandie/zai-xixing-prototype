@@ -434,13 +434,14 @@ function openModal(type, context = {}) {
 
     oldPhotos: `
       <h3>历史照片</h3>
-      <div class="img-ph">旧影像资料展示</div>
-      <p>历史照片用于补充同一地点在不同时期的视觉线索，使用户在观看今日影像时意识到空间记忆的延续与变化。</p>
+      <img src="./assets/images/history/history_old_street_photos.jpg" alt="西兴历史照片资料" class="modal-photo" />
+      <p>本组历史照片呈现铁岭关、江公祠以及西兴历史街区等旧影像资料，用于补充西兴古镇在历史街区、商业空间与地方记忆中的视觉线索。</p>
     `,
 
     gazetteer: `
       <h3>地方志资料</h3>
-      <p>地方志资料用于补充西兴渡口、街巷、手工业与地方商业往来的背景信息，为节点影像提供更完整的历史语境。</p>
+      <img src="./assets/images/history/history_hailou_tangzha.jpg" alt="明万历《萧山县志》西兴镇海楼塘闸图" class="modal-photo" />
+      <p>此图为明万历《萧山县志》中关于西兴镇海楼塘闸的图像资料，呈现西兴作为水陆交通节点、滨水空间与地方设施之间的历史关系。该资料用于辅助理解“昔日西兴”的空间结构与历史记忆。</p>
     `,
 
     labels: `
