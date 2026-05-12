@@ -330,12 +330,14 @@ function renderCover() {
   return `
     <section class="page cover">
       <div class="card cover-inner">
+        <span class="cover-kicker">地图式交互纪录片网页原型</span>
         <h1>《在西兴》</h1>
-        <p>一座被展示、也仍在生活的古镇</p>
+        <p>进入一座被展示、也仍在生活的古镇</p>
         <div class="cover-actions">
           <button class="btn" data-go="map">进入地图</button>
           <button class="btn" data-modal="aboutWork">关于作品</button>
         </div>
+        <div class="cover-tags">今日西兴 · 昔日西兴 · 相册里的西兴</div>
       </div>
     </section>
   `;
@@ -410,6 +412,13 @@ function renderMap() {
 
 function renderNode(nodeKey) {
   const node = nodes[nodeKey];
+  const nodeLabels = {
+  tailor: '节点 01 / 生活手艺',
+  tofu: '节点 02 / 日常饮食',
+  pavilion: '节点 03 / 传说记忆',
+  alley: '节点 04 / 空间行走',
+  museum: '节点 05 / 历史档案',
+};
   if (!node) return '';
 
   const topRight =
@@ -468,7 +477,10 @@ function renderNode(nodeKey) {
         <button class="btn" data-go="map">← 返回地图</button>
         ${topRight}
       </div>
+      <div class="node-heading">
+      <span class="node-kicker">${nodeLabels[nodeKey] || '节点'}</span>
       <h2>${node.name}</h2>
+    </div>
       ${nodeMainContent}
       ${bottomNav}
     </section>
