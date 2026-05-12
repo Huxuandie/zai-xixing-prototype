@@ -296,6 +296,7 @@ const bottomNav = `
     <button class="btn" data-go-node="museum">过塘行码头专项陈列馆</button>
     <button class="btn" data-go="album">相册里的西兴</button>
     <button class="btn" data-go="map">返回地图</button>
+    <button class="btn" data-go="cover">返回封面</button>
   </div>
 `;
 
@@ -326,111 +327,118 @@ function render() {
   }
 }
 
+function renderSiteHeader(active = '') {
+  return `
+    <header class="site-shell-nav">
+      <button class="site-logo" data-go="cover">
+        <strong>《在西兴》</strong>
+        <span>地图式交互纪录片</span>
+      </button>
+
+      <nav class="site-menu">
+        <button class="nav-link ${active === 'cover' ? 'active' : ''}" data-go="cover">首页</button>
+        <button class="nav-link ${active === 'today' ? 'active' : ''}" data-map-mode="today">今日西兴</button>
+        <button class="nav-link ${active === 'history' ? 'active' : ''}" data-map-mode="history">昔日西兴</button>
+        <button class="nav-link ${active === 'album' ? 'active' : ''}" data-go="album">相册里的西兴</button>
+        <button class="nav-link" data-go-node="tailor">节点漫游</button>
+        <button class="nav-link" data-modal="aboutWork">关于作品</button>
+      </nav>
+    </header>
+  `;
+}
+
 function renderCover() {
   return `
     <section class="page cover cover-home">
-      <header class="home-nav">
-        <div class="home-brand">
-          <strong>《在西兴》</strong>
-          <span>地图式交互纪录片</span>
-        </div>
-        <nav class="home-menu">
-          <button class="nav-link active" data-go="cover">首页</button>
-          <button class="nav-link" data-map-mode="today">今日西兴</button>
-          <button class="nav-link" data-map-mode="history">昔日西兴</button>
-          <button class="nav-link" data-go="album">相册里的西兴</button>
-          <button class="nav-link" data-go-node="tailor">节点漫游</button>
-          <button class="nav-link" data-modal="aboutWork">关于作品</button>
-        </nav>
-      </header>
+      <div class="cover-stage">
+        ${renderSiteHeader('cover')}
 
-      <main class="home-hero">
-        <section class="hero-copy">
-          <div class="hero-kicker">地图式交互纪录片</div>
-          <h1>《在西兴》</h1>
-          <p class="hero-subtitle">一座仍在生活的古镇，<br />在江潮与街巷之间，记忆从未远去。</p>
-          <div class="hero-actions">
-            <button class="btn primary-btn" data-go="map">进入地图</button>
-            <button class="btn ghost-btn" data-modal="aboutWork">关于作品</button>
+        <main class="home-hero">
+          <section class="hero-copy">
+            <div class="hero-kicker">地图式交互纪录片</div>
+            <h1>《在西兴》</h1>
+            <p class="hero-subtitle">一座仍在生活的古镇，<br />在江潮与街巷之间，记忆从未远去。</p>
+            <div class="hero-actions">
+              <button class="btn primary-btn" data-go="map">进入地图</button>
+              <button class="btn ghost-btn" data-modal="aboutWork">关于作品</button>
+            </div>
+          </section>
+
+          <section class="hero-collage" aria-label="在西兴主视觉">
+            <img class="collage-map" src="${mapImages.history}" alt="西兴历史地图" />
+            <img class="collage-photo collage-photo-main" src="${albumPhotos[1].image}" alt="西兴水岸" />
+            <img class="collage-photo collage-photo-a" src="${albumPhotos[0].image}" alt="老街门面" />
+            <img class="collage-photo collage-photo-b" src="${albumPhotos[3].image}" alt="庄亭旧影" />
+            <img class="collage-photo collage-photo-c" src="${albumPhotos[5].image}" alt="豆腐坊记忆" />
+          </section>
+        </main>
+
+        <section class="home-feature-grid">
+          <article class="feature-card">
+            <div>
+              <h3>今日西兴</h3>
+              <p class="feature-sub">今日所见，生活延续</p>
+              <p>走进当下的西兴古镇，感受烟火日常与街巷风貌。</p>
+            </div>
+            <img src="${albumPhotos[1].image}" alt="今日西兴" />
+            <button class="feature-arrow" data-map-mode="today">→</button>
+          </article>
+
+          <article class="feature-card">
+            <div>
+              <h3>昔日西兴</h3>
+              <p class="feature-sub">历史留痕，古镇记忆</p>
+              <p>浏览老地图、历史图像与地方志资料，探寻西兴的往昔岁月。</p>
+            </div>
+            <img src="${mapImages.history}" alt="昔日西兴" />
+            <button class="feature-arrow" data-map-mode="history">→</button>
+          </article>
+
+          <article class="feature-card">
+            <div>
+              <h3>相册里的西兴</h3>
+              <p class="feature-sub">影像集锦，记忆片段</p>
+              <p>通过实地拍摄照片与公众记忆征集，拼合出西兴的记忆地图。</p>
+            </div>
+            <img src="${albumPhotos[6].image}" alt="相册里的西兴" />
+            <button class="feature-arrow" data-go="album">→</button>
+          </article>
+        </section>
+
+        <section class="home-node-strip">
+          <div class="node-strip-intro">
+            <h3>节点漫游</h3>
+            <p>探索古镇中的生活与记忆节点</p>
+          </div>
+
+          <div class="node-badges">
+            <button class="node-badge" data-go-node="tailor">
+              <img src="${posterSources.tailor}" alt="裁缝铺" />
+              <span>裁缝铺</span>
+            </button>
+            <button class="node-badge" data-go-node="tofu">
+              <img src="${posterSources.tofu}" alt="豆腐坊" />
+              <span>豆腐坊</span>
+            </button>
+            <button class="node-badge" data-go-node="pavilion">
+              <img src="${posterSources.pavilion}" alt="庄亭" />
+              <span>庄亭（西施妆亭）</span>
+            </button>
+            <button class="node-badge" data-go-node="alley">
+              <img src="${posterSources.alley}" alt="街巷" />
+              <span>街巷</span>
+            </button>
+            <button class="node-badge" data-go-node="museum">
+              <img src="${posterSources.museum}" alt="陈列馆" />
+              <span>过塘行码头专项陈列馆</span>
+            </button>
           </div>
         </section>
 
-        <section class="hero-collage" aria-label="在西兴主视觉">
-          <img class="collage-map" src="${mapImages.history}" alt="西兴历史地图" />
-          <img class="collage-photo collage-photo-main" src="${albumPhotos[1].image}" alt="西兴水岸" />
-          <img class="collage-photo collage-photo-a" src="${albumPhotos[0].image}" alt="老街门面" />
-          <img class="collage-photo collage-photo-b" src="${albumPhotos[3].image}" alt="庄亭旧影" />
-          <img class="collage-photo collage-photo-c" src="${albumPhotos[5].image}" alt="豆腐坊记忆" />
-          <div class="ink-shape shape-one"></div>
-          <div class="ink-shape shape-two"></div>
-        </section>
-      </main>
-
-      <section class="home-feature-grid">
-        <article class="feature-card">
-          <div>
-            <h3>今日西兴</h3>
-            <p class="feature-sub">今日所见，生活延续</p>
-            <p>走进当下的西兴古镇，感受烟火日常与街巷风貌。</p>
-          </div>
-          <img src="${albumPhotos[1].image}" alt="今日西兴" />
-          <button class="feature-arrow" data-map-mode="today">→</button>
-        </article>
-
-        <article class="feature-card">
-          <div>
-            <h3>昔日西兴</h3>
-            <p class="feature-sub">历史留痕，古镇记忆</p>
-            <p>浏览老地图、历史图像与地方志资料，探寻西兴的往昔岁月。</p>
-          </div>
-          <img src="${mapImages.history}" alt="昔日西兴" />
-          <button class="feature-arrow" data-map-mode="history">→</button>
-        </article>
-
-        <article class="feature-card">
-          <div>
-            <h3>相册里的西兴</h3>
-            <p class="feature-sub">影像集锦，记忆片段</p>
-            <p>通过实地拍摄照片与公众记忆征集，拼合出西兴的记忆地图。</p>
-          </div>
-          <img src="${albumPhotos[6].image}" alt="相册里的西兴" />
-          <button class="feature-arrow" data-go="album">→</button>
-        </article>
-      </section>
-
-      <section class="home-node-strip">
-        <div class="node-strip-intro">
-          <h3>节点漫游</h3>
-          <p>探索古镇中的生活与记忆节点</p>
-        </div>
-
-        <div class="node-badges">
-          <button class="node-badge" data-go-node="tailor">
-            <img src="${posterSources.tailor}" alt="裁缝铺" />
-            <span>裁缝铺</span>
-          </button>
-          <button class="node-badge" data-go-node="tofu">
-            <img src="${posterSources.tofu}" alt="豆腐坊" />
-            <span>豆腐坊</span>
-          </button>
-          <button class="node-badge" data-go-node="pavilion">
-            <img src="${posterSources.pavilion}" alt="庄亭" />
-            <span>庄亭（西施妆亭）</span>
-          </button>
-          <button class="node-badge" data-go-node="alley">
-            <img src="${posterSources.alley}" alt="街巷" />
-            <span>街巷</span>
-          </button>
-          <button class="node-badge" data-go-node="museum">
-            <img src="${posterSources.museum}" alt="过塘行码头专项陈列馆" />
-            <span>过塘行码头专项陈列馆</span>
-          </button>
-        </div>
-      </section>
-
-      <footer class="home-footer">
-        潮起钱塘 · 古镇西兴 · 记忆长存
-      </footer>
+        <footer class="home-footer">
+          潮起钱塘 · 古镇西兴 · 记忆长存
+        </footer>
+      </div>
     </section>
   `;
 }
@@ -456,54 +464,68 @@ function renderMap() {
   const isToday = state.mapMode === 'today';
 
   return `
-    <section class="page">
-      <h2>主地图</h2>
-      <div>
-        <button class="tab-btn" data-map-mode="today">今日西兴</button>
-        <button class="tab-btn" data-map-mode="history">昔日西兴</button>
-      </div>
+    <section class="page page-shell">
+      ${renderSiteHeader(isToday ? 'today' : 'history')}
 
-      <div class="map-layout">
-        <div class="map-board card">
-          <div class="map-layer ${isToday ? 'today' : 'history'}">
-            ${
-              isToday
-                ? `<img class="today-map-image" src="${mapImages.today}" alt="今日西兴地图" />`
-                : `<img class="today-map-image history-map-image" src="${mapImages.history}" alt="昔日西兴地图" />`
-            }
-            <h3 class="map-title">${isToday ? '今日西兴地图层' : '昔日西兴历史层'}</h3>
-            ${renderMapHotspots(isToday)}
+      <main class="content-stage map-stage">
+        <div class="stage-title-row">
+          <div>
+            <span class="stage-kicker">MAP LAYER</span>
+            <h2>主地图</h2>
           </div>
+          <button class="btn" data-go="cover">返回封面</button>
         </div>
 
-        <aside class="side-panel card">
-          <h3>${isToday ? '地图说明（今日）' : '历史资料层（昔日）'}</h3>
-          <p>${
-            isToday
-              ? '点击地图热点进入节点页面，观看节点影像并查看相关资料。'
-              : '昔日层以历史地图和资料弹窗为主，用于补充西兴古镇的空间记忆与地方传说，不直接对应现代影像节点。'
-          }</p>
-          ${
-            isToday
-              ? ''
-              : `<div class="old-materials">
-                  <h4>昔日西兴资料</h4>
-                  <ul>
-                    <li><button class="btn" data-modal="oldMap">历史地图</button></li>
-                    <li><button class="btn" data-modal="oldPhotos">历史图像</button></li>
-                    <li><button class="btn" data-modal="gazetteer">地方志资料</button></li>
-                    <li><button class="btn" data-modal="xishiLegend">西施妆亭传说</button></li>
-                  </ul>
-                </div>`
-          }
-        </aside>
-      </div>
+        <div class="map-tabs">
+          <button class="tab-btn ${isToday ? 'active-tab' : ''}" data-map-mode="today">今日西兴</button>
+          <button class="tab-btn ${!isToday ? 'active-tab' : ''}" data-map-mode="history">昔日西兴</button>
+        </div>
+
+        <div class="map-layout">
+          <div class="map-board card">
+            <div class="map-layer ${isToday ? 'today' : 'history'}">
+              ${
+                isToday
+                  ? `<img class="today-map-image" src="${mapImages.today}" alt="今日西兴地图" />`
+                  : `<img class="today-map-image history-map-image" src="${mapImages.history}" alt="昔日西兴地图" />`
+              }
+              <h3 class="map-title">${isToday ? '今日西兴地图层' : '昔日西兴历史层'}</h3>
+              ${renderMapHotspots(isToday)}
+            </div>
+          </div>
+
+          <aside class="side-panel card">
+            <span class="panel-number">${isToday ? 'NO.01' : 'NO.02'}</span>
+            <h3>${isToday ? '地图说明（今日）' : '历史资料层（昔日）'}</h3>
+            <p>${
+              isToday
+                ? '点击地图热点进入节点页面，观看节点影像并查看相关资料。'
+                : '昔日层以历史地图和资料弹窗为主，用于补充西兴古镇的空间记忆与地方传说，不直接对应现代影像节点。'
+            }</p>
+            ${
+              isToday
+                ? ''
+                : `<div class="old-materials">
+                    <h4>昔日西兴资料</h4>
+                    <ul>
+                      <li><button class="btn" data-modal="oldMap">历史地图</button></li>
+                      <li><button class="btn" data-modal="oldPhotos">历史图像</button></li>
+                      <li><button class="btn" data-modal="gazetteer">方志与治水资料</button></li>
+                      <li><button class="btn" data-modal="xishiLegend">西施妆亭传说</button></li>
+                    </ul>
+                  </div>`
+            }
+          </aside>
+        </div>
+      </main>
     </section>
   `;
 }
 
 function renderNode(nodeKey) {
   const node = nodes[nodeKey];
+  if (!node) return '';
+
   const nodeLabels = {
   tailor: '节点 01 / 生活手艺',
   tofu: '节点 02 / 日常饮食',
@@ -511,8 +533,6 @@ function renderNode(nodeKey) {
   alley: '节点 04 / 空间行走',
   museum: '节点 05 / 历史档案',
 };
-  if (!node) return '';
-
   const topRight =
   nodeKey === 'pavilion'
     ? `
@@ -563,20 +583,27 @@ function renderNode(nodeKey) {
     `;
   }
 
-  return `
-    <section class="page">
+return `
+  <section class="page page-shell">
+    ${renderSiteHeader('node')}
+
+    <main class="content-stage node-stage">
       <div class="node-topbar">
         <button class="btn" data-go="map">← 返回地图</button>
+        <button class="btn" data-go="cover">返回封面</button>
         ${topRight}
       </div>
+
       <div class="node-heading">
-      <span class="node-kicker">${nodeLabels[nodeKey] || '节点'}</span>
-      <h2>${node.name}</h2>
-    </div>
+        <span class="node-kicker">${nodeLabels[nodeKey] || '节点'}</span>
+        <h2>${node.name}</h2>
+      </div>
+
       ${nodeMainContent}
       ${bottomNav}
-    </section>
-  `;
+    </main>
+  </section>
+`;
 }
 
 function renderAlbum() {
@@ -591,18 +618,28 @@ function renderAlbum() {
     )
     .join('');
 
-  return `
-    <section class="page">
-      <button class="btn" data-go="map">← 返回地图</button>
-      <h2>相册里的西兴</h2>
-      <p>这里预置部分实地拍摄照片，作为公众记忆征集模块的基础展示与视觉参考。点击任意图片查看详情。</p>
-      <div class="photo-grid">${items}</div>
-      <div style="margin-top:16px;">
-        <button class="btn" data-go="form">分享我的西兴记忆</button>
-        <button class="btn" data-go="ending">查看结语</button>
-      </div>
-    </section>
-  `;
+    return `
+      <section class="page page-shell">
+        ${renderSiteHeader('album')}
+
+        <main class="content-stage album-stage">
+          <div class="stage-title-row">
+            <div>
+              <span class="stage-kicker">PHOTO ALBUM</span>
+              <h2>相册里的西兴</h2>
+            </div>
+            <button class="btn" data-go="cover">返回封面</button>
+          </div>
+
+          <p>这里预置部分实地拍摄照片，作为公众记忆征集模块的基础展示与视觉参考。点击任意图片查看详情。</p>
+          <div class="photo-grid">${items}</div>
+          <div style="margin-top:16px;">
+            <button class="btn" data-go="form">分享我的西兴记忆</button>
+            <button class="btn" data-go="ending">查看结语</button>
+          </div>
+        </main>
+      </section>
+    `;
 }
 
 function renderForm() {
@@ -698,7 +735,9 @@ function closeModal() {
 }
 
 app.addEventListener('click', (event) => {
-  const target = event.target;
+  const target = event.target.closest('button');
+  if (!target) return;
+
   const go = target.dataset.go;
   const goNode = target.dataset.goNode;
   const mapMode = target.dataset.mapMode;
