@@ -545,9 +545,7 @@ function openModal(type, context = {}) {
       <p>用户通过自主选择路径进入不同影像片段、历史资料与个人相册内容，在非线性浏览中建立对西兴古镇的空间记忆与地方认知。</p>
       <p><strong>交互方式：</strong>点击地图热点进入节点页面，观看影像，并通过历史资料、地方传说和相册模块补充对地点的理解。</p>
       <p><strong>创作说明：</strong>本作品为毕业设计网页原型，重点展示地图式叙事结构、节点影像组织方式与公众记忆参与机制。</p>
-      <div>
-        <button class="btn" data-close-modal>关闭</button>
-      </div>
+
     `,
 
     about: renderAboutModal(context.node),
