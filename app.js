@@ -48,6 +48,7 @@ const posterSources = {
 
 const mapImages = {
   today: './assets/images/maps/map_today_xixing.png',
+  history: './assets/images/maps/map_history_xixing.jpg',
 };
 const albumPhotos = [
   {
@@ -213,7 +214,7 @@ function renderMap() {
             ${
               isToday
                 ? `<img class="today-map-image" src="${mapImages.today}" alt="今日西兴地图" />`
-                : ''
+                : `<img class="today-map-image history-map-image" src="${mapImages.history}" alt="昔日西兴地图" />`
             }
             <h3 class="map-title">${isToday ? '今日西兴地图层' : '昔日西兴历史层'}</h3>
             ${renderMapHotspots(isToday)}
@@ -428,8 +429,8 @@ function openModal(type, context = {}) {
 
     oldMap: `
       <h3>老地图资料</h3>
-      <div class="img-ph">西兴古镇历史空间示意</div>
-      <p>这里用于呈现西兴渡口、街巷、水岸与主要节点之间的历史空间关系，帮助用户从“昔日西兴”的角度重新理解今日地图。</p>
+      <img src="./assets/images/maps/map_history_xixing.jpg" alt="西兴古镇历史地图" class="modal-photo" />
+      <p>这张地图作为“昔日西兴”的历史空间资料，用于呈现西兴古镇中渡口、水岸、街巷与主要地点之间的关系，帮助用户从历史层面理解今日西兴的空间结构。</p>
     `,
 
     oldPhotos: `
