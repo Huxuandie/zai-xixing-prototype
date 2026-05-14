@@ -364,9 +364,14 @@ function renderCover() {
             <h1>《在西兴》</h1>
             <p class="hero-subtitle">一座仍在生活的古镇，<br />在江潮与街巷之间，记忆从未远去。</p>
             <div class="hero-actions">
-              <button class="btn primary-btn" data-go="map">进入地图</button>
-              <button class="btn ghost-btn" data-modal="aboutWork">关于作品</button>
-            </div>
+              <button class="btn primary" data-go="map">
+                <span>◉</span>
+                进入地图
+              </button>
+              <button class="btn" data-modal="aboutWork">
+                <span>☷</span>
+                关于作品
+              </button>
           </section>
 
           <section class="hero-collage" aria-label="在西兴主视觉">

@@ -1,9 +1,16 @@
 :root {
-  --bg: #e8dfcd;
-  --ink: #2f2a23;
-  --accent: #7a6248;
-  --paper: #f4eddc;
-  --line: #b7a78f;
+  --bg: #efe6d6;
+  --paper: #f6efe3;
+  --paper-2: #e8dcc8;
+  --line: #b89d78;
+  --line-soft: rgba(124, 92, 58, 0.22);
+  --text: #3e2f21;
+  --text-soft: #6c5642;
+  --accent: #7a5631;
+  --accent-dark: #5d4025;
+  --accent-light: #d9c1a0;
+  --shadow: 0 10px 30px rgba(73, 50, 28, 0.10);
+  --radius: 20px;
 }
 
 * {
@@ -12,9 +19,11 @@
 
 body {
   margin: 0;
-  font-family: "Noto Serif SC", "Songti SC", serif;
-  color: var(--ink);
-  background: var(--bg);
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,0.4), transparent 30%),
+    linear-gradient(180deg, #f3eadb 0%, #eadfce 100%);
+  color: var(--text);
+  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
 }
 
 button,
@@ -57,6 +66,15 @@ textarea {
   flex-wrap: wrap;
   margin-top: 18px;
 }
+.cover-panel,
+.hero-panel,
+.home-hero {
+  background: rgba(248, 241, 231, 0.92);
+  border: 1px solid rgba(124, 92, 58, 0.18);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
 
 h1,
 h2,
@@ -70,20 +88,38 @@ p {
   line-height: 1.6;
 }
 
-.btn,
-.tab-btn {
-  border: 1px solid var(--accent);
-  background: #f0e6d2;
-  color: var(--ink);
-  padding: 10px 16px;
-  border-radius: 7px;
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 0 20px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, #f7f0e4 0%, #eadbc6 100%);
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 10px rgba(93, 64, 37, 0.08);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
   cursor: pointer;
-  margin: 4px;
 }
 
-.btn:hover,
-.tab-btn:hover {
-  background: #e6d8bc;
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 18px rgba(93, 64, 37, 0.14);
+}
+
+.btn.primary {
+  background: linear-gradient(180deg, #8a633a 0%, #6e4d2b 100%);
+  color: #fffaf2;
+  border-color: #6e4d2b;
+}
+
+.btn.primary:hover {
+  background: linear-gradient(180deg, #936b42 0%, #624425 100%);
 }
 
 .map-layout {
@@ -1016,6 +1052,24 @@ textarea {
   flex-wrap: wrap;
 }
 
+.hero-title,
+.cover-title {
+  font-size: 64px;
+  line-height: 1.05;
+  letter-spacing: 4px;
+  color: #4b321d;
+  margin: 0 0 14px;
+  font-weight: 700;
+}
+
+.hero-subtitle,
+.cover-subtitle {
+  font-size: 24px;
+  letter-spacing: 8px;
+  color: #7b624d;
+  margin-bottom: 20px;
+}
+
 .primary-btn {
   min-width: 180px;
   background: linear-gradient(180deg, #7a6248, #5b4732);
@@ -1120,25 +1174,33 @@ textarea {
 }
 
 .feature-card {
-  position: relative;
-  min-height: 170px;
+  background: linear-gradient(180deg, rgba(252,248,242,0.96), rgba(238,227,210,0.96));
+  border: 1px solid var(--line-soft);
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(73, 50, 28, 0.08);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
   overflow: hidden;
-  border: 1px solid rgba(122, 98, 72, 0.38);
-  border-radius: 16px;
-  padding: 24px 190px 22px 24px;
-  background: rgba(248, 241, 222, 0.82);
-  box-shadow: 0 14px 28px rgba(47, 42, 35, 0.12);
+}
+
+.feature-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 24px rgba(73, 50, 28, 0.12);
+}
+
+.feature-card img {
+  width: 100%;
+  border-radius: 14px;
+  display: block;
 }
 
 .feature-card h3 {
+  margin: 0 0 8px;
   font-size: 30px;
-  margin-bottom: 6px;
+  color: #49311d;
 }
 
 .feature-card p {
-  position: relative;
-  z-index: 2;
-  margin: 0 0 8px;
+  color: var(--text-soft);
   line-height: 1.8;
 }
 
@@ -1235,6 +1297,29 @@ textarea {
   border-radius: 6px;
   font-size: 14px;
   line-height: 1.4;
+}
+
+.node-strip {
+  background: linear-gradient(180deg, rgba(244,236,224,0.95), rgba(232,220,201,0.96));
+  border-radius: 24px;
+  border: 1px solid var(--line-soft);
+  padding: 24px 20px;
+  box-shadow: 0 8px 20px rgba(73, 50, 28, 0.08);
+}
+
+.node-thumb {
+  width: 110px;
+  height: 110px;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 4px solid rgba(255,255,255,0.75);
+  box-shadow: 0 8px 16px rgba(73, 50, 28, 0.12);
+}
+
+.node-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .home-footer {
