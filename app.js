@@ -233,6 +233,11 @@ function renderMaterialSlides(type) {
   return `
     <h3>${group.title}</h3>
     <p>${group.intro}</p>
+    ${
+      hasMultiple
+        ? '<p class="viewer-tip">可通过“上一张 / 下一张”翻阅本组资料。</p>'
+        : ''
+    }
 
     <div class="material-viewer">
       <div class="material-count">${index + 1} / ${group.items.length}</div>
@@ -296,7 +301,7 @@ const bottomNav = `
     <button class="btn" data-go-node="museum">过塘行码头专项陈列馆</button>
     <button class="btn" data-go="album">相册里的西兴</button>
     <button class="btn" data-go="map">返回地图</button>
-    <button class="btn" data-go="cover">返回封面</button>
+    <button class="btn" data-go="cover">返回首页</button>
   </div>
 `;
 
@@ -340,7 +345,7 @@ function renderSiteHeader(active = '') {
         <button class="nav-link ${active === 'today' ? 'active' : ''}" data-map-mode="today">今日西兴</button>
         <button class="nav-link ${active === 'history' ? 'active' : ''}" data-map-mode="history">昔日西兴</button>
         <button class="nav-link ${active === 'album' ? 'active' : ''}" data-go="album">相册里的西兴</button>
-        <button class="nav-link" data-go-node="tailor">节点漫游</button>
+        <button class="nav-link" data-map-mode="today">节点漫游</button>
         <button class="nav-link" data-modal="aboutWork">关于作品</button>
       </nav>
     </header>
@@ -473,7 +478,7 @@ function renderMap() {
             <span class="stage-kicker">MAP LAYER</span>
             <h2>主地图</h2>
           </div>
-          <button class="btn" data-go="cover">返回封面</button>
+          <button class="btn" data-go="cover">返回首页</button>
         </div>
 
         <div class="map-tabs">
@@ -590,7 +595,7 @@ return `
     <main class="content-stage node-stage">
       <div class="node-topbar">
         <button class="btn" data-go="map">← 返回地图</button>
-        <button class="btn" data-go="cover">返回封面</button>
+        <button class="btn" data-go="cover">返回首页</button>
         ${topRight}
       </div>
 
@@ -628,7 +633,7 @@ function renderAlbum() {
               <span class="stage-kicker">PHOTO ALBUM</span>
               <h2>相册里的西兴</h2>
             </div>
-            <button class="btn" data-go="cover">返回封面</button>
+            <button class="btn" data-go="cover">返回首页</button>
           </div>
 
           <p>这里预置部分实地拍摄照片，作为公众记忆征集模块的基础展示与视觉参考。点击任意图片查看详情。</p>

@@ -1853,3 +1853,10 @@ textarea {
     flex-direction: column;
   }
 }
+
+.viewer-tip {
+  color: #7a6248;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin: -4px 0 12px;
+}
