@@ -382,7 +382,7 @@ function renderCover() {
             <div>
               <h3>今日西兴</h3>
               <p class="feature-sub">今日所见，生活延续</p>
-              <p>走进当下的西兴古镇，感受烟火日常与街巷风貌。</p>
+              <p>走进当下的古镇，感受水岸、街巷与日常烟火。</p>
             </div>
             <img src="${albumPhotos[1].image}" alt="今日西兴" />
             <button class="feature-arrow" data-map-mode="today"></button>
@@ -392,7 +392,7 @@ function renderCover() {
             <div>
               <h3>昔日西兴</h3>
               <p class="feature-sub">历史留痕，古镇记忆</p>
-              <p>浏览老地图、历史图像与地方志资料，探寻西兴的往昔岁月。</p>
+              <p>翻阅老地图、历史图像与地方资料，进入西兴往昔。</p>
             </div>
             <img src="${mapImages.history}" alt="昔日西兴" />
             <button class="feature-arrow" data-map-mode="history"></button>
@@ -402,7 +402,7 @@ function renderCover() {
             <div>
               <h3>相册里的西兴</h3>
               <p class="feature-sub">影像集锦，记忆片段</p>
-              <p>通过实地拍摄照片与公众记忆征集，拼合出西兴的记忆地图。</p>
+              <p>以实地照片与个人记忆，拼合一张西兴影像地图。</p>
             </div>
             <img src="${albumPhotos[6].image}" alt="相册里的西兴" />
             <button class="feature-arrow" data-go="album"></button>
