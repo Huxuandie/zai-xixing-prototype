@@ -2017,3 +2017,190 @@ textarea {
   margin-right: 6px;
   font-size: 14px;
 }
+
+/* ===== 入口卡片箭头优化 ===== */
+
+.feature-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 260px;
+  padding: 42px 42px 84px 42px; /* 底部加大，为按钮留位置 */
+  border-radius: 28px;
+  border: 1px solid rgba(115, 90, 58, 0.18);
+  background: rgba(248, 241, 225, 0.9);
+  box-shadow: 0 10px 24px rgba(96, 73, 44, 0.08);
+}
+
+.feature-card h2,
+.feature-card h3 {
+  margin: 0 0 12px 0;
+  color: #4e3218;
+}
+
+.feature-card p {
+  max-width: 560px;
+  margin: 0;
+  line-height: 1.9;
+  color: #6b5135;
+}
+
+.feature-arrow {
+  position: absolute;
+  left: 42px;
+  bottom: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: auto;
+  min-width: 96px;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(109, 81, 49, 0.32);
+  background: rgba(249, 242, 227, 0.88);
+  color: #4c3320;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  backdrop-filter: blur(6px);
+  box-shadow:
+    0 6px 16px rgba(88, 63, 39, 0.10),
+    inset 0 1px 0 rgba(255,255,255,0.55);
+  transition: all 0.2s ease;
+  z-index: 3;
+}
+
+.feature-arrow:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 248, 235, 0.96);
+  box-shadow:
+    0 10px 22px rgba(88, 63, 39, 0.16),
+    inset 0 1px 0 rgba(255,255,255,0.65);
+}
+
+.feature-arrow::before {
+  content: "进入";
+  font-size: 14px;
+}
+
+.feature-arrow::after {
+  content: "→";
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* ===== 弹窗：泛黄纸张 / 档案页风格 ===== */
+
+.modal-overlay {
+  background: rgba(74, 62, 49, 0.42);
+  backdrop-filter: blur(3px);
+}
+
+.modal-panel,
+.modal-content,
+.modal-body {
+  position: relative;
+  max-width: min(1180px, 92vw);
+  border-radius: 28px;
+  border: 1px solid rgba(121, 95, 63, 0.22);
+  background:
+    radial-gradient(circle at 18% 16%, rgba(255,255,255,0.20), transparent 28%),
+    radial-gradient(circle at 85% 80%, rgba(156,117,72,0.08), transparent 25%),
+    linear-gradient(180deg, rgba(247, 240, 225, 0.98) 0%, rgba(235, 223, 198, 0.98) 100%);
+  box-shadow:
+    0 22px 54px rgba(56, 41, 26, 0.16),
+    inset 0 1px 0 rgba(255,255,255,0.4);
+  overflow: hidden;
+}
+
+/* 内层旧纸边框 */
+.modal-panel::before,
+.modal-content::before,
+.modal-body::before {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 1px dashed rgba(141, 112, 77, 0.32);
+  border-radius: 20px;
+  pointer-events: none;
+}
+
+/* 水印层，可选 */
+.modal-panel::after,
+.modal-content::after,
+.modal-body::after {
+  content: "在西兴";
+  position: absolute;
+  top: 24px;
+  left: 34px;
+  font-size: 84px;
+  font-weight: 700;
+  letter-spacing: 6px;
+  color: rgba(115, 88, 58, 0.035);
+  pointer-events: none;
+}
+
+/* 弹窗正文区域 */
+.modal-panel-inner,
+.modal-main {
+  position: relative;
+  z-index: 2;
+  padding: 52px 56px 42px;
+}
+
+.modal-panel h2,
+.modal-panel h3,
+.modal-content h2,
+.modal-content h3 {
+  margin: 0 0 28px 0;
+  color: #4e331a;
+  font-size: clamp(32px, 3vw, 54px);
+  line-height: 1.25;
+}
+
+.modal-panel p,
+.modal-content p,
+.modal-body p {
+  margin: 0 0 18px 0;
+  color: #493725;
+  line-height: 1.95;
+  font-size: 17px;
+}
+
+/* 如果是说明性大段文字，可以让正文首行缩进 */
+.modal-panel p:not(.no-indent),
+.modal-content p:not(.no-indent),
+.modal-body p:not(.no-indent) {
+  text-indent: 2em;
+}
+
+/* 强调项 */
+.modal-panel strong,
+.modal-content strong,
+.modal-body strong {
+  color: #3d2815;
+  font-weight: 700;
+}
+
+/* 关闭按钮 */
+.modal-close {
+  position: absolute;
+  top: 26px;
+  right: 28px;
+  width: 48px;
+  height: 48px;
+  border: none;
+  background: transparent;
+  color: #3f2c1b;
+  font-size: 34px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 5;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.modal-close:hover {
+  transform: rotate(90deg) scale(1.04);
+  opacity: 0.75;
+}

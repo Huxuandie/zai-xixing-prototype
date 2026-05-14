@@ -385,7 +385,7 @@ function renderCover() {
               <p>走进当下的西兴古镇，感受烟火日常与街巷风貌。</p>
             </div>
             <img src="${albumPhotos[1].image}" alt="今日西兴" />
-            <button class="feature-arrow" data-map-mode="today">→</button>
+            <button class="feature-arrow" data-map-mode="today"></button>
           </article>
 
           <article class="feature-card">
@@ -395,7 +395,7 @@ function renderCover() {
               <p>浏览老地图、历史图像与地方志资料，探寻西兴的往昔岁月。</p>
             </div>
             <img src="${mapImages.history}" alt="昔日西兴" />
-            <button class="feature-arrow" data-map-mode="history">→</button>
+            <button class="feature-arrow" data-map-mode="history"></button>
           </article>
 
           <article class="feature-card">
@@ -405,7 +405,7 @@ function renderCover() {
               <p>通过实地拍摄照片与公众记忆征集，拼合出西兴的记忆地图。</p>
             </div>
             <img src="${albumPhotos[6].image}" alt="相册里的西兴" />
-            <button class="feature-arrow" data-go="album">→</button>
+            <button class="feature-arrow" data-go="album"></button>
           </article>
         </section>
 
